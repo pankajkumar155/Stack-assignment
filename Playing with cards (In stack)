@@ -1,0 +1,50 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt();
+		int q=sc.nextInt();
+		Stack<Integer> s1=new Stack<Integer>();
+		
+		Stack<Integer> b= new Stack<Integer>();
+		
+		for(int i=0;i<n;i++)
+			s1.push(sc.nextInt());
+		for(int i=0;i<q;i++){
+			int p=getPrime(i+1);
+			Stack<Integer> a= new Stack<Integer>();
+			while(!s1.isEmpty()){
+				
+				int ele=s1.pop();
+				if(ele%p==0){
+					b.push(ele);
+				}
+					
+				else
+					a.push(ele);
+			}
+			while(!b.isEmpty())
+				System.out.println(b.pop());
+			s1=a;
+		}
+		while(!s1.isEmpty())
+			System.out.println(s1.pop());
+    }
+
+	public static int getPrime(int n){
+		for(int i=2;i<Integer.MAX_VALUE;i++){
+	        int count=0;
+	        for(int j=1;j*j<=i;j++){
+	            if(i%j==0)
+	                count++;
+	        }
+	        if(count==1){
+	            n--;
+	        }
+	        if(n==0)
+	            return i;
+	        
+	    }
+		return 0;
+	}
+}
